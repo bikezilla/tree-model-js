@@ -53,6 +53,11 @@ module.exports = (function () {
     return this.parent === undefined;
   };
 
+  Node.prototype.isLeaf = function () {
+    return this.children.length == 0;
+  };
+
+
   Node.prototype.hasChildren = function () {
     return this.children.length > 0;
   };
@@ -202,6 +207,10 @@ module.exports = (function () {
       }
     }, args.ctx);
     return first;
+  };
+
+  Node.prototype.leaves = function () {
+    return this.all(function (node) { return node.isLeaf() });
   };
 
   Node.prototype.drop = function () {
